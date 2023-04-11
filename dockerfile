@@ -1,7 +1,7 @@
 FROM python:3.10.9
 
 RUN pip install fastapi uvicorn pandas torch transformers
-
+RUN python3 ./scripts/setup.py
 COPY ./api /api/api
 COPY ./models/tapas.bin /models/tapas.bin
 
