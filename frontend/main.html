@@ -1,0 +1,69 @@
+<!-- write boilerplate html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <!-- inport styles from style.css -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="app">
+      <textarea id="input" cols="100" rows="10"></textarea>
+      <input id="search" type="text" size="50" placeholder="Search">
+      <!-- get inference button -->
+      <button id="get-inference">Get Inference</button>
+      <!-- an ul to put in the items from the inference -->
+      <ul id="inference"></ul>
+
+    </div>
+  </body>
+  <script>
+    // select the get_inference_button
+    const get_inference_button = document.getElementById('get-inference');
+    // get the contents of search
+    const search = document.getElementById('search');
+
+    // get the contents if the textarea
+    const input = document.getElementById('input');
+
+    // console log the input when get inference button is clicked
+    // and log the response
+    get_inference_button.addEventListener('click', () => {
+      // get the contents of the text area and store it in a variable called table
+      // each newline should be sperated by a ;
+      const table = input.value.split('\n').join(';');
+      // get the contents of the search bar and store it in a variable called question
+      const question = search.value;
+      // create a post request with the url 127.0.0.1/predict with the url params: question:str and table:str
+      fetch(`http://127.0.0.1:8000/predict?question=${question}&table=${table}`, {
+        method: 'POST'
+      }).then(response => response.json()).then(data => {
+        console.log(data);
+        // clear the ul with id inference
+        document.getElementById('inference').innerHTML = '';
+        const listItems = document.getElementById('inference').querySelectorAll('li');
+        listItems.forEach(item => {
+          item.classList.add('fade-out');
+        });
+
+        setTimeout(() => {
+          inferenceList.innerHTML = '';
+          // add items from data to the ul with id inference
+        }, 2000);
+
+        // do nothing for 2 seconds
+
+        // add items from data to the ul with id inference
+        data.answer.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = item;
+          document.getElementById('inference').appendChild(li);
+        });
+      });
+
+      // console log the response
+
+    });
+
+  </script>
+</html>
