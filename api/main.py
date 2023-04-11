@@ -1,7 +1,6 @@
 from io import StringIO
 import pandas as pd
 import torch
-import requests
 from transformers import TapasTokenizer, TapasForQuestionAnswering
 
 import uvicorn
