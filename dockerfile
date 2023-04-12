@@ -1,14 +1,16 @@
 FROM python:3.10.9
 
-RUN pip install fastapi uvicorn pandas torch transformers
-RUN python3 ./scripts/setup.py
-COPY ./api /api/api
-COPY ./models/tapas.bin /models/tapas.bin
+RUN pip install fastapi uvicorn pandas transformers[torch]
 
-ENV PYTHONPATH=/api
+COPY ./scripts/setup.py /scripts/setup.py
+RUN mkdir /models
+RUN python3 /scripts/setup.py
+RUN rm /scripts/setup.py
+COPY ./api /api
+
 WORKDIR /api
 
 EXPOSE 8000
 
-ENTRYPOINT ["uvicorn"]
-CMD ["api.main:app", "--host", "0.0.0.0"]
+# ENTRYPOINT ["uvicorn"]
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

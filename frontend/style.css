@@ -4,18 +4,71 @@
   align-items: center;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-
-td, th {
-  width: 80px;
-  height: 40px;
-  border: 1px solid black;
-  padding: 5px;
+#get-inference,
+#convert,
+#clear {
+  background-color: #3f8fd6;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 20px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+#get-inference:hover,
+#convert:hover,
+#clear:hover {
+  background-color: #2979bd;
+}
+
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  background-color: #f2f4f8;
+  border-radius: 16px;
+  margin: 40px;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+td {
+  background-color: #fff;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #e6f7ff;
+}
+
+/* Optional: add a border to the table */
+table {
+  border: 1px solid #ccc;
+}
+
 
 button {
   margin-top: 10px;
